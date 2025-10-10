@@ -27,40 +27,40 @@ The main objective of this project is to help Apple’s retail division optimize
 - Identifying high-claim product categories to improve quality and service design.
 
 ---
-stores: Contains information about Apple retail stores.
 
-store_id: Unique identifier for each store.
-store_name: Name of the store.
-city: City where the store is located.
-country: Country of the store.
+## Data Dictionary
 
-category: Holds product category information.
+**stores:** Contains information about Apple retail stores.  
+- store_id: Unique identifier for each store.  
+- store_name: Name of the store.  
+- city: City where the store is located.  
+- country: Country of the store.  
 
-category_id: Unique identifier for each product category.
-category_name: Name of the category.
+**category:** Holds product category information.  
+- category_id: Unique identifier for each product category.  
+- category_name: Name of the category.  
 
-products: Details about Apple products.
+**products:** Details about Apple products.  
+- product_id: Unique identifier for each product.  
+- product_name: Name of the product.  
+- category_id: References the category table.  
+- launch_date: Date when the product was launched.  
+- price: Price of the product.  
 
-product_id: Unique identifier for each product.
-product_name: Name of the product.
-category_id: References the category table.
-launch_date: Date when the product was launched.
-price: Price of the product.
+**sales:** Stores sales transactions.  
+- sale_id: Unique identifier for each sale.  
+- sale_date: Date of the sale.  
+- store_id: References the store table.  
+- product_id: References the product table.  
+- quantity: Number of units sold.  
 
-sales: Stores sales transactions.
+**warranty:** Contains information about warranty claims.  
+- claim_id: Unique identifier for each warranty claim.  
+- claim_date: Date the claim was made.  
+- sale_id: References the sales table.  
+- repair_status: Status of the warranty claim (e.g., Paid, Repaired, Warranty Void).
 
-sale_id: Unique identifier for each sale.
-sale_date: Date of the sale.
-store_id: References the store table.
-product_id: References the product table.
-quantity: Number of units sold.
-
-warranty: Contains information about warranty claims.
-
-claim_id: Unique identifier for each warranty claim.
-claim_date: Date the claim was made.
-sale_id: References the sales table.
-repair_status: Status of the warranty claim (e.g., Paid, Repaired, Warranty Void).
+---
 
 ## Data Preparation and Methodology
 
@@ -77,7 +77,7 @@ repair_status: Status of the warranty claim (e.g., Paid, Repaired, Warranty Void
 3. **Analytical Approach**  
    - Used SQL aggregate functions (`SUM`, `COUNT`, `GROUP BY`) to compute key metrics.  
    - Applied date filters to focus on recent and relevant timeframes.  
-   - Avoided using complex SQL features (like subqueries or window functions) for better portability.
+   - Avoided complex SQL features (like subqueries or window functions) for better portability.
 
 ---
 
@@ -102,13 +102,13 @@ Recently launched products (within 2 years) accounted for about 35% of claims, s
 ---
 
 ### 4. High-Sales Months in the USA
-Sales exceeded 5,000 units during **November, December, and April**, aligning with holidays and launch events.  
+Sales exceeded 5,000 units during November, December, and April, aligning with holidays and launch events.  
 **Recommendation:** Prepare additional stock and promotional campaigns during these peak months.
 
 ---
 
 ### 5. Product Category with Most Warranty Claims
-The **Wearables** category (Apple Watch, AirPods) had the highest claim rate.  
+The Wearables category (Apple Watch, AirPods) had the highest claim rate.  
 **Recommendation:** Improve design durability and enhance after-sales services.
 
 ---
@@ -122,5 +122,3 @@ The **Wearables** category (Apple Watch, AirPods) had the highest claim rate.
 | Launch Strategy | New products show above-average claim rates | Implement extended testing cycles |
 | Sales Planning | Clear seasonal peaks in USA | Align stock and campaigns with sales cycles |
 | After-Sales Service | Wearables have high claim volume | Improve repair service and customer experience |
-
-
