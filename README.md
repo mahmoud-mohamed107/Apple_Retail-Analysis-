@@ -77,39 +77,69 @@ The main objective of this project is to help Apple’s retail division optimize
 3. **Analytical Approach**  
    - Used SQL aggregate functions (`SUM`, `COUNT`, `GROUP BY`) to compute key metrics.  
    - Applied date filters to focus on recent and relevant timeframes.  
-   - Avoided complex SQL features (like subqueries or window functions) for better portability.
 
 ---
 
 ## Key Findings
 
 ### 1. Least Selling Product by Country and Year
-Certain accessories, especially older iPhone models and low-demand iPads, recorded the lowest sales in Canada and Australia between 2021–2023.  
-**Recommendation:** Reposition or phase out these products with targeted marketing or bundle offers.
-
+```sql
+SELECT country, p.product_name, EXTRACT(YEAR FROM s.sale_date) AS year,
+       SUM(s.quantity) AS total_units_sold
+FROM sales s
+JOIN stores st ON s.store_id = st.store_id
+JOIN products p ON s.product_id = p.product_id
+GROUP BY country, p.product_name, year
+ORDER BY total_units_sold ASC;
 ---
 
 ### 2. Warranty Claims within 180 Days
-Around 22% of warranty claims were filed within 180 days of purchase — indicating possible early defects.  
-**Recommendation:** Strengthen quality control checks before shipment.
+```sql
+SELECT COUNT(w.claim_id) AS claims_within_180_days
+FROM warranty w
+JOIN sales s ON w.sale_id = s.sale_id
+WHERE (w.claim_date - s.sale_date) <= 180;
+
 
 ---
 
 ### 3. Warranty Claims for Recently Launched Products
-Recently launched products (within 2 years) accounted for about 35% of claims, suggesting QA gaps for new items.  
-**Recommendation:** Extend quality assurance and product testing before release.
+```sql
+SELECT COUNT(w.claim_id) AS recent_product_claims
+FROM warranty w
+JOIN sales s ON w.sale_id = s.sale_id
+JOIN products p ON s.product_id = p.product_id
+WHERE p.launch_date >= CURRENT_DATE - INTERVAL '2 years';
 
 ---
 
 ### 4. High-Sales Months in the USA
-Sales exceeded 5,000 units during November, December, and April, aligning with holidays and launch events.  
-**Recommendation:** Prepare additional stock and promotional campaigns during these peak months.
+```sql
+SELECT EXTRACT(YEAR FROM s.sale_date) AS year,
+       EXTRACT(MONTH FROM s.sale_date) AS month,
+       SUM(s.quantity) AS total_units
+FROM sales s
+JOIN stores st ON s.store_id = st.store_id
+WHERE st.country = 'USA'
+  AND s.sale_date >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY year, month
+HAVING SUM(s.quantity) > 5000
+ORDER BY year, month;
+
 
 ---
 
 ### 5. Product Category with Most Warranty Claims
-The Wearables category (Apple Watch, AirPods) had the highest claim rate.  
-**Recommendation:** Improve design durability and enhance after-sales services.
+```sql
+SELECT c.category_name, COUNT(w.claim_id) AS total_claims
+FROM warranty w
+JOIN sales s ON w.sale_id = s.sale_id
+JOIN products p ON s.product_id = p.product_id
+JOIN category c ON p.category_id = c.category_id
+WHERE w.claim_date >= CURRENT_DATE - INTERVAL '2 years'
+GROUP BY c.category_name
+ORDER BY total_claims DESC
+LIMIT 1;
 
 ---
 
