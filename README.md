@@ -92,7 +92,7 @@ JOIN products p ON s.product_id = p.product_id
 GROUP BY country, p.product_name, year
 ORDER BY total_units_sold ASC;
 ---
-
+```
 ### 2. Warranty Claims within 180 Days
 ```sql
 SELECT COUNT(w.claim_id) AS claims_within_180_days
@@ -100,7 +100,7 @@ FROM warranty w
 JOIN sales s ON w.sale_id = s.sale_id
 WHERE (w.claim_date - s.sale_date) <= 180;
 
-
+```
 ---
 
 ### 3. Warranty Claims for Recently Launched Products
@@ -110,7 +110,7 @@ FROM warranty w
 JOIN sales s ON w.sale_id = s.sale_id
 JOIN products p ON s.product_id = p.product_id
 WHERE p.launch_date >= CURRENT_DATE - INTERVAL '2 years';
-
+```
 ---
 
 ### 4. High-Sales Months in the USA
@@ -125,7 +125,7 @@ WHERE st.country = 'USA'
 GROUP BY year, month
 HAVING SUM(s.quantity) > 5000
 ORDER BY year, month;
-
+```
 
 ---
 
@@ -140,7 +140,7 @@ WHERE w.claim_date >= CURRENT_DATE - INTERVAL '2 years'
 GROUP BY c.category_name
 ORDER BY total_claims DESC
 LIMIT 1;
-
+```
 ---
 
 ## Insights and Recommendations
