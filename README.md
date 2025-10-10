@@ -27,71 +27,40 @@ The main objective of this project is to help Apple’s retail division optimize
 - Identifying high-claim product categories to improve quality and service design.
 
 ---
+stores: Contains information about Apple retail stores.
 
-## Database Schema (Simplified Explanation)
+store_id: Unique identifier for each store.
+store_name: Name of the store.
+city: City where the store is located.
+country: Country of the store.
 
-The dataset consists of **five main tables** that represent Apple’s retail and warranty operations.  
-Below is a simple description of each table and what kind of information it contains.
+category: Holds product category information.
 
-### 1. Stores Table
-This table contains basic information about each Apple retail store around the world.  
-It includes:
-- **Store ID:** A unique code for every store.  
-- **Store Name:** The name used to identify the branch.  
-- **City and Country:** The location details of the store.  
+category_id: Unique identifier for each product category.
+category_name: Name of the category.
 
-Essentially, it helps us understand *where* each sale happened.
+products: Details about Apple products.
 
----
+product_id: Unique identifier for each product.
+product_name: Name of the product.
+category_id: References the category table.
+launch_date: Date when the product was launched.
+price: Price of the product.
 
-### 2. Category Table
-This is a short reference table that lists all the product categories.  
-For example: “iPhone,” “iPad,” “Mac,” “Accessories,” “Wearables.”  
-Each category has:
-- **Category ID** — the code used to link it to products.  
-- **Category Name** — the readable name of the product group.
+sales: Stores sales transactions.
 
-This table helps group different products under one umbrella for analysis.
+sale_id: Unique identifier for each sale.
+sale_date: Date of the sale.
+store_id: References the store table.
+product_id: References the product table.
+quantity: Number of units sold.
 
----
+warranty: Contains information about warranty claims.
 
-### 3. Products Table
-This table stores all the details about Apple products themselves.  
-It includes:
-- **Product ID:** The unique code for each item (like iPhone 14 Pro, iPad Mini, etc.).  
-- **Product Name:** The full name of the product.  
-- **Category ID:** A reference that links the product to its category (from the Category table).  
-- **Launch Date:** The date the product was officially released.  
-- **Price:** The selling price of the product.
-
-This table is the main reference for analyzing what was sold and when it was launched.
-
----
-
-### 4. Sales Table
-This is one of the core tables in the analysis — it records every sale transaction.  
-Each row represents a specific sale and contains:
-- **Sale ID:** The transaction number.  
-- **Sale Date:** When the sale occurred.  
-- **Store ID:** Where the sale took place.  
-- **Product ID:** Which product was sold.  
-- **Quantity:** How many units were sold in that transaction.
-
-This table connects the **stores** and **products** tables and lets us calculate total sales per product, per region, or per year.
-
----
-
-### 5. Warranty Table
-This table contains all information related to warranty claims submitted by customers.  
-Each record represents a single claim and includes:
-- **Claim ID:** The unique number for each warranty claim.  
-- **Claim Date:** When the customer submitted the claim.  
-- **Sale ID:** A link to the specific sale transaction (from the Sales table).  
-- **Repair Status:** Whether the claim was “Paid,” “Repaired,” or “Warranty Void.”
-
-This table is essential for understanding product reliability and customer satisfaction.
-
----
+claim_id: Unique identifier for each warranty claim.
+claim_date: Date the claim was made.
+sale_id: References the sales table.
+repair_status: Status of the warranty claim (e.g., Paid, Repaired, Warranty Void).
 
 ## Data Preparation and Methodology
 
