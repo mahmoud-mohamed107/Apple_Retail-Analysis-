@@ -91,8 +91,9 @@ JOIN stores st ON s.store_id = st.store_id
 JOIN products p ON s.product_id = p.product_id
 GROUP BY country, p.product_name, year
 ORDER BY total_units_sold ASC;
----
 ```
+---
+
 ### 2. Warranty Claims within 180 Days
 ```sql
 SELECT COUNT(w.claim_id) AS claims_within_180_days
@@ -143,12 +144,35 @@ LIMIT 1;
 ```
 ---
 
+
 ## Insights and Recommendations
 
-| Area | Insight | Recommendation |
-|------|----------|----------------|
-| Product Portfolio | Older accessories have weak sales | Discontinue or reposition these products |
-| Quality Control | Early warranty claims are high | Strengthen pre-launch testing |
-| Launch Strategy | New products show above-average claim rates | Implement extended testing cycles |
-| Sales Planning | Clear seasonal peaks in USA | Align stock and campaigns with sales cycles |
-| After-Sales Service | Wearables have high claim volume | Improve repair service and customer experience |
+- **Product Portfolio:**  
+  Older accessories consistently show weak sales performance.  
+  → *Recommendation:* Discontinue or reposition these products with updated marketing to prevent inventory buildup.
+
+---
+
+- **Quality Control:**  
+  A significant number of warranty claims occur within 180 days of purchase, signaling potential product quality issues.  
+  → *Recommendation:* Strengthen pre-launch testing and implement stricter QA measures.
+
+---
+
+- **Launch Strategy:**  
+  Recently launched products have higher warranty claim rates, suggesting rushed launches.  
+  → *Recommendation:* Extend testing phases and incorporate customer feedback before full rollout.
+
+---
+
+- **Sales Planning:**  
+  Sales in the U.S. display clear seasonal peaks, often tied to holidays or major launches.  
+  → *Recommendation:* Adjust stock and marketing efforts to match these demand patterns.
+
+---
+
+- **After-Sales Service:**  
+  Wearable devices generate the most warranty claims.  
+  → *Recommendation:* Enhance service speed, repair quality, and customer communication to boost satisfaction and loyalty.
+
+
