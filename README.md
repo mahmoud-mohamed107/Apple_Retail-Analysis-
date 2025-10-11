@@ -28,7 +28,7 @@ The main objective of this project is to help Apple’s retail division optimize
 
 ---
 
-## Data Dictionary
+## Data Schema
 
 **stores:** Contains information about Apple retail stores.  
 - store_id: Unique identifier for each store.  
@@ -92,7 +92,7 @@ JOIN products p ON s.product_id = p.product_id
 GROUP BY country, p.product_name, year
 ORDER BY total_units_sold ASC;
 ```
----
+
 
 ### 2. Warranty Claims within 180 Days
 ```sql
@@ -102,7 +102,6 @@ JOIN sales s ON w.sale_id = s.sale_id
 WHERE (w.claim_date - s.sale_date) <= 180;
 
 ```
----
 
 ### 3. Warranty Claims for Recently Launched Products
 ```sql
@@ -112,7 +111,6 @@ JOIN sales s ON w.sale_id = s.sale_id
 JOIN products p ON s.product_id = p.product_id
 WHERE p.launch_date >= CURRENT_DATE - INTERVAL '2 years';
 ```
----
 
 ### 4. High-Sales Months in the USA
 ```sql
@@ -128,7 +126,6 @@ HAVING SUM(s.quantity) > 5000
 ORDER BY year, month;
 ```
 
----
 
 ### 5. Product Category with Most Warranty Claims
 ```sql
@@ -151,19 +148,13 @@ LIMIT 1;
   Older accessories consistently show weak sales performance.  
   → *Recommendation:* Discontinue or reposition these products with updated marketing to prevent inventory buildup.
 
----
-
 - **Quality Control:**  
   A significant number of warranty claims occur within 180 days of purchase, signaling potential product quality issues.  
   → *Recommendation:* Strengthen pre-launch testing and implement stricter QA measures.
 
----
-
 - **Launch Strategy:**  
   Recently launched products have higher warranty claim rates, suggesting rushed launches.  
   → *Recommendation:* Extend testing phases and incorporate customer feedback before full rollout.
-
----
 
 - **Sales Planning:**  
   Sales in the U.S. display clear seasonal peaks, often tied to holidays or major launches.  
