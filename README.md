@@ -160,8 +160,6 @@ LIMIT 1;
   Sales in the U.S. display clear seasonal peaks, often tied to holidays or major launches.  
   → *Recommendation:* Adjust stock and marketing efforts to match these demand patterns.
 
----
-
 - **After-Sales Service:**  
   Wearable devices generate the most warranty claims.  
   → *Recommendation:* Enhance service speed, repair quality, and customer communication to boost satisfaction and loyalty.
