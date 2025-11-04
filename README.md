@@ -146,22 +146,22 @@ LIMIT 1;
 
 - **Product Portfolio:**  
   Older accessories consistently show weak sales performance.  
-  → *Recommendation:* Discontinue or reposition these products with updated marketing to prevent inventory buildup.
+   *Recommendation:* Discontinue or reposition these products with updated marketing to prevent inventory buildup.
 
 - **Quality Control:**  
   A significant number of warranty claims occur within 180 days of purchase, signaling potential product quality issues.  
-  → *Recommendation:* Strengthen pre-launch testing and implement stricter QA measures.
+   *Recommendation:* Strengthen pre-launch testing and implement stricter QA measures.
 
 - **Launch Strategy:**  
   Recently launched products have higher warranty claim rates, suggesting rushed launches.  
-  → *Recommendation:* Extend testing phases and incorporate customer feedback before full rollout.
+   *Recommendation:* Extend testing phases and incorporate customer feedback before full rollout.
 
 - **Sales Planning:**  
   Sales in the U.S. display clear seasonal peaks, often tied to holidays or major launches.  
-  → *Recommendation:* Adjust stock and marketing efforts to match these demand patterns.
+   *Recommendation:* Adjust stock and marketing efforts to match these demand patterns.
 
 - **After-Sales Service:**  
   Wearable devices generate the most warranty claims.  
-  → *Recommendation:* Enhance service speed, repair quality, and customer communication to boost satisfaction and loyalty.
+   *Recommendation:* Enhance service speed, repair quality, and customer communication to boost satisfaction and loyalty.
 
 
